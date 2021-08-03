@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-
-const NavBar = ({ user, handleLogout }) => {
+import Search from '../Search/Search'
+const NavBar = ({ user, handleLogout, history }) => {
     return (
     <>
       {user ?
@@ -11,6 +11,9 @@ const NavBar = ({ user, handleLogout }) => {
               <li className="nav-link">Welcome, {user.name}</li>
               <li><Link to="/users" className="nav-link">Users</Link></li>
               <Link to='' onClick={handleLogout}>LOG OUT</Link>
+              <Search 
+                history={history}
+              />
             </ul>
           </div>
         </nav>

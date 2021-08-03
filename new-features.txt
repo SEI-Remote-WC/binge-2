@@ -1,0 +1,14 @@
+
+NOT DONE
+- "Now Playing On"
+- Latest / Now Playing / Popular / Top Rated / Upcoming
+- Genre Lookup
+- IMDB Links
+- belongs_to_collection & Collection details? (Stretch)
+
+DONE
+- Video embedding
+- Get similar movies/shows
+
+MAYBE?
+- Pagination

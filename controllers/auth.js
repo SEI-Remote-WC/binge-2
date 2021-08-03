@@ -1,4 +1,5 @@
 import { User } from '../models/user.js'
+import { Profile } from '../models/profile.js'
 import jwt from 'jsonwebtoken'
 
 export {
@@ -24,9 +25,13 @@ async function login(req, res) {
 }
 
 async function signup(req, res) {
+  const profile = new Profile(req.body);
+  req.body.profile = profile._id
   const user = new User(req.body);
   try {
     await user.save();
+    await profile.save();
+
     // Be sure to first delete data that should not be in the token
     const token = createJWT(user);
     res.json({ token });
