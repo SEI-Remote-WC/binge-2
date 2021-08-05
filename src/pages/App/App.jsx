@@ -141,7 +141,7 @@ class App extends Component {
             :
             <Redirect to='/login' />
         }/>
-        <Route exact path='/movies/genre/:id' render={({location, match}) => 
+        <Route exact path='/movies/genre/:genre' render={({location, match}) => 
           authService.getUser() ?
             <MovieSearch
               location={location}
@@ -150,7 +150,7 @@ class App extends Component {
             :
             <Redirect to='/login' />
         }/>
-        <Route exact path='/tvs/genre/:id' render={({location, match}) => 
+        <Route exact path='/tvs/genre/:genre' render={({location, match}) => 
           authService.getUser() ?
             <TvSearch
               location={location}

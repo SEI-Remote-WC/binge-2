@@ -17,9 +17,11 @@ class MovieSearch extends Component {
       this.setState({searchResults})
     } else if (this.state.id) {
       const searchResults = await movieAPI.searchSimilar(this.state.id)
+      console.log(searchResults)
       this.setState({searchResults})
     } else if (this.state.genre) {
       const searchResults = await movieAPI.searchGenre(this.state.genre)
+      console.log(searchResults)
       this.setState({searchResults})
     }
   }

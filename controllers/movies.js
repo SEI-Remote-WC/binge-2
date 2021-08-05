@@ -10,9 +10,9 @@ export {
 }
 
 function searchGenre(req, res) {
-  axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.API_Key}&with_genres=${req.params.id}`)
+  axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.API_KEY}&with_genres=${req.params.id}`)
   .then(response => {
-    console.log(response.data)
+    res.json(response.data)
   })
 }
 
