@@ -10,7 +10,7 @@ const app = express();
 
 import('./config/database.js')
 
-import { router as usersRouter } from './routes/users.js'
+import { router as profilesRouter } from './routes/profiles.js'
 import { router as authRouter } from './routes/auth.js'
 import { router as moviesRouter } from './routes/movies.js'
 import { router as tvsRouter } from './routes/tvs.js'
@@ -22,7 +22,7 @@ app.use(logger('dev'));
 app.use(express.json());
 
 
-app.use('/api/users', usersRouter);
+app.use('/api/profiles', profilesRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/movies', moviesRouter);
 app.use('/api/tvs', tvsRouter);

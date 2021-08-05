@@ -1,4 +1,5 @@
 import React from 'react'
+import * as tvGenreLookup from '../../services/genreLookup'
 
 const TvCard = ({ tv }) => {
   return (
@@ -9,6 +10,12 @@ const TvCard = ({ tv }) => {
       <p>{tv.first_air_date}</p>
       <p>{tv.id}</p>
       <p>{tv.overview}</p>
+      <h4>Genres:</h4>
+      {tv.genre_ids?.map(genre => 
+        <a href={`/tvs/genre/${genre}`}>
+          <p>{tvGenreLookup.identifyTvGenre(genre)}</p>
+        </a>
+      )}
     </>
   );
 }

@@ -29,6 +29,17 @@ export function searchSimilar(id) {
 }
 
 
+export function searchGenre(id) {
+  return fetch(`${BASE_URL}/searchGenre/${id}`, {
+    headers: {
+      'Authorization': `Bearer ${tokenService.getToken()}`
+    },
+  }, {mode: "cors"})
+  .then(res => res.json())
+}
+
+
+
 
 
 

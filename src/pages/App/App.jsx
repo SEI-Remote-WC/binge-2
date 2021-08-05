@@ -3,28 +3,47 @@ import { Route, Redirect } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
 import Signup from "../Signup/Signup";
 import Login from "../Login/Login";
-import Users from '../Users/User'
+import ProfileList from '../ProfileList/ProfileList'
 import * as authService from '../../services/authService'
 import "./App.css";
 import MovieSearch from '../MovieSearch/MovieSearch'
 import TvSearch from '../TvSearch/TvSearch'
 import MovieDetails from '../MovieDetails/MovieDetails'
 import TvDetails from '../TvDetails/TvDetails'
+import * as profileAPI from '../../services/profileService'
 
 class App extends Component {
   state = {
-    user: authService.getUser()
+    user: authService.getUser(),
+    userProfile: null
   }
   
   handleLogout = () => {
     authService.logout();
-    this.setState({ user: null });
+    this.setState({ user: null, userProfile: null });
     this.props.history.push("/");
   };
 
-  handleSignupOrLogin = () => {
-    this.setState({ user: authService.getUser() });
+  handleSignupOrLogin = async () => {
+    this.setState({ user: await authService.getUser(), userProfile: await profileAPI.getUserProfile()});
   };
+
+  async componentDidMount() {
+    if (!this.state.userProfile) {
+      const userProfile = await profileAPI.getUserProfile()
+      this.setState({userProfile})
+    }
+  }
+
+  handleAddFriend = async friendId => {
+    const updatedProfile = await profileAPI.friend(friendId)
+    this.setState({userProfile: updatedProfile})
+  }
+
+  handleRemoveFriend = async friendId => {
+    const updatedProfile = await profileAPI.unfriend(friendId)
+    this.setState({userProfile: updatedProfile})
+  }
 
   render() {
     const { user } = this.state
@@ -38,8 +57,7 @@ class App extends Component {
             <main>
               
             </main>
-          )}
-        />
+        )}/>
         <Route
           exact
           path="/signup"
@@ -48,25 +66,27 @@ class App extends Component {
               history={history}
               handleSignupOrLogin={this.handleSignupOrLogin}
             />
-          )}
-        />
+        )}/>
         <Route
           exact
           path="/login"
           render={({ history }) => (
             <Login
-              history={history}
-              handleSignupOrLogin={this.handleSignupOrLogin}
+             history={history}
+             handleSignupOrLogin={this.handleSignupOrLogin}
             />
-          )}
-        />
+        )}/>
         <Route
           exact
           path="/users"
           render={() =>
-            user ? <Users /> : <Redirect to="/login" />
-          }
-        />
+            user ? 
+            <ProfileList 
+              handleAddFriend={this.handleAddFriend}
+              handleRemoveFriend={this.handleRemoveFriend}
+              userProfile={this.state.userProfile}
+            /> : <Redirect to="/login" />
+        }/>
         <Route exact path='/search/tv/:query' render={({location, match}) => 
           authService.getUser() ?
             <TvSearch
@@ -115,6 +135,24 @@ class App extends Component {
         <Route exact path='/tvs/similar/:id' render={({location, match}) => 
           authService.getUser() ?
             <TvSearch 
+              location={location}
+              match={match}
+            />
+            :
+            <Redirect to='/login' />
+        }/>
+        <Route exact path='/movies/genre/:id' render={({location, match}) => 
+          authService.getUser() ?
+            <MovieSearch
+              location={location}
+              match={match}
+            />
+            :
+            <Redirect to='/login' />
+        }/>
+        <Route exact path='/tvs/genre/:id' render={({location, match}) => 
+          authService.getUser() ?
+            <TvSearch
               location={location}
               match={match}
             />

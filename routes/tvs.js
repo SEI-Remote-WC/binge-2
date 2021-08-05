@@ -16,5 +16,6 @@ router.use(decodeUserFromToken)
 router.get('/search/:query', checkAuth, tvsCtrl.search)
 router.get('/searchOne/:id', checkAuth, tvsCtrl.searchOne)
 router.get('/searchSimilar/:id', checkAuth, tvsCtrl.searchSimilar)
+router.get('/searchGenre/:id', checkAuth, tvsCtrl.searchGenre)
 
 

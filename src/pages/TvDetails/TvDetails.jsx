@@ -17,6 +17,11 @@ class TvDetails extends Component {
       <>
         <h1>TV Deets</h1>
         <a href={`/tvs/similar/${this.state.searchResult.id}`}>Find similar shows</a>
+        {this.state.searchResult.genres?.map(genre => 
+          <a href={`/tvs/genre/${genre.id}`}>
+            <p>{genre.name}</p>
+          </a>
+        )}
         {this.state.searchResult.videos?.results.map((video, idx) => 
            <iframe key={idx} title={`search-video-${idx}`} src={`http://www.youtube.com/embed/${video.key}`}
            width="560" height="315" frameBorder="0"></iframe>  

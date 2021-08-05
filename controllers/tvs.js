@@ -3,10 +3,17 @@ import { Tv } from "../models/tv.js"
 import axios from "axios"
 
 export {
-  index,
   search,
   searchOne,
-  searchSimilar
+  searchSimilar,
+  searchGenre
+}
+
+function searchGenre(req, res) {
+  axios.get(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.API_Key}&with_genres=${req.params.id}`)
+  .then(response => {
+    console.log(response.data)
+  })
 }
 
 function index(req, res) {
