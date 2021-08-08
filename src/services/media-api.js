@@ -1,8 +1,7 @@
-import * as tokenService from '../services/tokenService';
-const BASE_URL = '/api/movies/';
+import * as tokenService from './tokenService';
 
-export function search(query) {
-  return fetch(`${BASE_URL}/search/${query}`, {
+export function search(type, query) {
+  return fetch(`/api/media/search/${type}/${query}`, {
     headers: {
       'Authorization': `Bearer ${tokenService.getToken()}`
     },
@@ -10,8 +9,8 @@ export function search(query) {
   .then(res => res.json())
 }
 
-export function searchOne(id) {
-  return fetch(`${BASE_URL}/searchOne/${id}`, {
+export function searchOne(type, id) {
+  return fetch(`/api/media/searchOne/${type}/${id}`, {
     headers: {
       'Authorization': `Bearer ${tokenService.getToken()}`
     },
@@ -19,8 +18,8 @@ export function searchOne(id) {
   .then(res => res.json())
 }
 
-export function searchSimilar(id) {
-  return fetch(`${BASE_URL}/searchSimilar/${id}`, {
+export function searchSimilar(type, id) {
+  return fetch(`/api/media/searchSimilar/${type}/${id}`, {
     headers: {
       'Authorization': `Bearer ${tokenService.getToken()}`
     },
@@ -29,8 +28,8 @@ export function searchSimilar(id) {
 }
 
 
-export function searchGenre(id) {
-  return fetch(`${BASE_URL}/searchGenre/${id}`, {
+export function searchGenre(type, id) {
+  return fetch(`/api/media/searchGenre/${type}/${id}`, {
     headers: {
       'Authorization': `Bearer ${tokenService.getToken()}`
     },

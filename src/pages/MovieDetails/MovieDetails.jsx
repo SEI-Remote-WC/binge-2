@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
-import * as moviesAPI from '../../services/movies-api'
+import * as mediaAPI from '../../services/media-api'
 
 class MovieDetails extends Component {
   state = {
     searchResult: {},
-    id: this.props.match.params.id
+    id: this.props.match.params.id,
+    type: 'movie'
   }
 
   async componentDidMount() {
-    const searchResult = await moviesAPI.searchOne(this.state.id)
+    const searchResult = await mediaAPI.searchOne(this.state.type, this.state.id)
     console.log(searchResult)
     this.setState({searchResult})
   }

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import * as movieAPI from '../../services/movies-api'
+import * as mediaAPI from '../../services/media-api'
 import MovieCard from '../../components/MovieCard/MovieCard'
 import MediaForm from '../../components/MediaForm/MediaForm'
 
 class MovieSearch extends Component {
   state = {
+    type: 'movie',
     searchResults: {},
     query: this.props.match.params.query,
     id: this.props.match.params.id,
@@ -13,13 +14,13 @@ class MovieSearch extends Component {
 
   async componentDidMount() {
     if (this.state.query) {
-      const searchResults = await movieAPI.search(this.state.query)
+      const searchResults = await mediaAPI.search(this.state.type, this.state.query)
       this.setState({searchResults})
     } else if (this.state.id) {
-      const searchResults = await movieAPI.searchSimilar(this.state.id)
+      const searchResults = await mediaAPI.searchSimilar(this.state.type, this.state.id)
       this.setState({searchResults})
     } else if (this.state.genre) {
-      const searchResults = await movieAPI.searchGenre(this.state.genre)
+      const searchResults = await mediaAPI.searchGenre(this.state.type, this.state.genre)
       this.setState({searchResults})
     }
   }

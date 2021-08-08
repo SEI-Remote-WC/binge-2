@@ -1,5 +1,4 @@
 
-import { Tv } from "../models/tv.js"
 import axios from "axios"
 
 export {

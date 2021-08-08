@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
-import * as tvAPI from '../../services/tv-api'
+import * as mediaAPI from '../../services/media-api'
 
 class TvDetails extends Component {
   state = {
     searchResult: {},
-    id: this.props.match.params.id
+    id: this.props.match.params.id,
+    type: 'tv'
   }
 
   async componentDidMount() {
-    const searchResult = await tvAPI.searchOne(this.state.id)
+    const searchResult = await mediaAPI.searchOne(this.state.type, this.state.id)
     this.setState({searchResult})
   }
 

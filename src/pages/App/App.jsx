@@ -46,13 +46,11 @@ class App extends Component {
   }
 
   handleAddMedia = async media => {
-    console.log('add')
     const updatedProfile = await profileAPI.addMedia(media)
     this.setState({userProfile: updatedProfile})
   }
 
   handleRemoveMedia = async media => {
-    console.log('remove')
     const updatedProfile = await profileAPI.removeMedia(media)
     this.setState({userProfile: updatedProfile})
   }
