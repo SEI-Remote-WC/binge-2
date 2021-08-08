@@ -48,6 +48,7 @@ async function removeMedia(req, res) {
 function userProfile(req, res) {
   Profile.findById(req.user.profile)
   .populate('media')
+  .populate('friends')
   .then(profile => {
     res.json(profile)
   })
@@ -56,6 +57,7 @@ function userProfile(req, res) {
 function friend(req, res) {
   Profile.findById(req.user.profile)
   .populate('media')
+  .populate('friends')
   .then(profile=> {
     profile.friends.push(req.params.id)
     profile.save()
@@ -66,6 +68,7 @@ function friend(req, res) {
 function unfriend(req, res) {
   Profile.findById(req.user.profile)
   .populate('media')
+  .populate('friends')
   .then(profile => {
     profile.friends.remove({_id: req.params.id})
     profile.save()

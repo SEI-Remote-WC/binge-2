@@ -9,10 +9,10 @@ const ProfileDetails = ({ location, userProfile, handleAddFriend, handleRemoveFr
   return (
     <>
       <h1>{location.state.profile.name}'s Deets</h1>
-      { !(userProfile?._id === profile._id) && !(userProfile?.friends?.includes(profile._id)) &&
+      { !(userProfile?._id === profile._id) && !(userProfile?.friends?.some(profile => profile._id === location.state.profile._id)) &&
       <button onClick={() => handleAddFriend(profile._id, location.state.profile)}>Befriend {profile.name}</button> 
     }
-      { !(userProfile?._id === profile._id) && (userProfile?.friends?.includes(profile._id)) &&
+      { !(userProfile?._id === profile._id) && (userProfile?.friends?.some(profile => profile._id === location.state.profile._id)) &&
       <button onClick={() => handleRemoveFriend(profile._id, location.state.profile)}>Defriend {profile.name}</button> 
     }     
     <h2>Friends</h2>
