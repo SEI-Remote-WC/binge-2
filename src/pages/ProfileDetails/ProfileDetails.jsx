@@ -8,7 +8,7 @@ const ProfileDetails = ({ location, userProfile, handleAddFriend, handleRemoveFr
   const profile = location.state.profile
   return (
     <>
-      <h1>{location.state.profile.name}'s Deets</h1>
+      <h1>{profile.name}'s Deets</h1>
       { !(userProfile?._id === profile._id) && !(userProfile?.friends?.some(profile => profile._id === location.state.profile._id)) &&
       <button onClick={() => handleAddFriend(profile._id, location.state.profile)}>Befriend {profile.name}</button> 
     }
@@ -16,7 +16,7 @@ const ProfileDetails = ({ location, userProfile, handleAddFriend, handleRemoveFr
       <button onClick={() => handleRemoveFriend(profile._id, location.state.profile)}>Defriend {profile.name}</button> 
     }     
     <h2>Friends</h2>
-      {location.state.profile.friends.map(profile => 
+      {profile.friends.map(profile => 
         <Link
           key={profile._id}
           to={{
