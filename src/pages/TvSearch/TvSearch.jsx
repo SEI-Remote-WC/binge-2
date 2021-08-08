@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import * as tvAPI from '../../services/tv-api'
 import TvCard from '../../components/TvCard/TvCard'
+import MediaForm from '../../components/MediaForm/MediaForm'
 
 class TvSearch extends Component {
   state = {
@@ -28,10 +29,20 @@ class TvSearch extends Component {
       <>
         <h1>TV Results</h1>
         {this.state.searchResults.results?.map((tv, idx) => 
-          <TvCard 
-            key={idx}
-            tv={tv}
-          />
+          <>
+            <TvCard 
+              key={idx}
+              tv={tv}
+            />
+            <MediaForm
+              key={idx} 
+              userProfile={this.props.userProfile}
+              handleAddMedia={this.props.handleAddMedia}
+              handleRemoveMedia={this.props.handleRemoveMedia}
+              media={tv}
+              type="tv"
+            />
+        </>
         )}
       </>  
     );

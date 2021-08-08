@@ -45,6 +45,18 @@ class App extends Component {
     this.setState({userProfile: updatedProfile})
   }
 
+  handleAddMedia = async media => {
+    console.log('add')
+    const updatedProfile = await profileAPI.addMedia(media)
+    this.setState({userProfile: updatedProfile})
+  }
+
+  handleRemoveMedia = async media => {
+    console.log('remove')
+    const updatedProfile = await profileAPI.removeMedia(media)
+    this.setState({userProfile: updatedProfile})
+  }
+
   render() {
     const { user } = this.state
     return (
@@ -92,6 +104,9 @@ class App extends Component {
             <TvSearch
               location={location}
               match={match}
+              userProfile={this.state.userProfile}
+              handleAddMedia={this.handleAddMedia}
+              handleRemoveMedia={this.handleRemoveMedia}
             />
             :
             <Redirect to='/login'/>
@@ -101,6 +116,9 @@ class App extends Component {
             <MovieSearch
               location={location}
               match={match}
+              userProfile={this.state.userProfile}
+              handleAddMedia={this.handleAddMedia}
+              handleRemoveMedia={this.handleRemoveMedia}
             />
             :
             <Redirect to='/login'/>
@@ -110,6 +128,9 @@ class App extends Component {
             <MovieDetails 
               location={location}
               match={match}
+              userProfile={this.state.userProfile}
+              handleAddMedia={this.handleAddMedia}
+              handleRemoveMedia={this.handleRemoveMedia}
             />
             :
             <Redirect to='/login' />
@@ -119,6 +140,9 @@ class App extends Component {
             <TvDetails 
               location={location}
               match={match}
+              userProfile={this.state.userProfile}
+              handleAddMedia={this.handleAddMedia}
+              handleRemoveMedia={this.handleRemoveMedia}
             />
             :
             <Redirect to='/login' />
@@ -128,6 +152,9 @@ class App extends Component {
             <MovieSearch
               location={location}
               match={match}
+              userProfile={this.state.userProfile}
+              handleAddMedia={this.handleAddMedia}
+              handleRemoveMedia={this.handleRemoveMedia}
             />
             :
             <Redirect to='/login' />
@@ -137,6 +164,9 @@ class App extends Component {
             <TvSearch 
               location={location}
               match={match}
+              userProfile={this.state.userProfile}
+              handleAddMedia={this.handleAddMedia}
+              handleRemoveMedia={this.handleRemoveMedia}
             />
             :
             <Redirect to='/login' />
@@ -146,6 +176,9 @@ class App extends Component {
             <MovieSearch
               location={location}
               match={match}
+              userProfile={this.state.userProfile}
+              handleAddMedia={this.handleAddMedia}
+              handleRemoveMedia={this.handleRemoveMedia}
             />
             :
             <Redirect to='/login' />
@@ -155,6 +188,9 @@ class App extends Component {
             <TvSearch
               location={location}
               match={match}
+              userProfile={this.state.userProfile}
+              handleAddMedia={this.handleAddMedia}
+              handleRemoveMedia={this.handleRemoveMedia}
             />
             :
             <Redirect to='/login' />

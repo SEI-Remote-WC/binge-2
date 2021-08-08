@@ -1,5 +1,3 @@
-
-import { Movie } from "../models/movie.js"
 import axios from "axios"
 
 export {

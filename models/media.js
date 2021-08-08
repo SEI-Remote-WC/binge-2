@@ -1,10 +1,11 @@
 import mongoose from 'mongoose'
 
 export {
-  Movie
+  Media
 }
 
-const movieSchema = new mongoose.Schema({
+const mediaSchema = new mongoose.Schema({
+  type: String,
   title: {type: String, required: true},
   backdrop_path: String,
   poster_path: String,
@@ -15,4 +16,4 @@ const movieSchema = new mongoose.Schema({
   timestamps: true
 });
 
-const Movie = mongoose.model('Movie', movieSchema);
+const Media = mongoose.model('Media', mediaSchema);

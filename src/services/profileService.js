@@ -34,6 +34,31 @@ export function unfriend(id) {
     {
       method: 'PATCH',
       headers: { Authorization: "Bearer " + tokenService.getToken() }
-    },    { mode: "cors" }
+    },
+    { mode: "cors" }
     ).then((res) => res.json())
+}
+
+export function addMedia(media) {
+  return fetch(
+    `${BASE_URL}/addMedia`,
+    {
+      method: 'PATCH',
+      headers: {'content-type': 'application/json', 'Authorization': 'Bearer ' + tokenService.getToken()},
+      body: JSON.stringify(media)
+    },
+    { mode: "cors" })
+  .then((res) => res.json())
+}
+
+export function removeMedia(media) {
+  return fetch(
+    `${BASE_URL}/removeMedia`,
+    {
+      method: 'PATCH',
+      headers: {'content-type': 'application/json', 'Authorization': 'Bearer ' + tokenService.getToken()},
+      body: JSON.stringify(media)
+    },
+    { mode: "cors" })
+  .then((res) => res.json())
 }

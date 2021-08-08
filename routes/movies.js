@@ -18,4 +18,3 @@ router.get('/searchOne/:id', checkAuth, moviesCtrl.searchOne)
 router.get('/searchSimilar/:id', checkAuth, moviesCtrl.searchSimilar)
 router.get('/searchGenre/:id', checkAuth, moviesCtrl.searchGenre)
 
-

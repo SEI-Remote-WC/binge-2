@@ -9,7 +9,7 @@ const profileSchema = new mongoose.Schema(
     email: String,
     name: String,
     friends: [{type: mongoose.Schema.Types.ObjectId, ref: "Profile"}],
-    movies: [{type: mongoose.Schema.Types.ObjectId, ref: "Profile"}]
+    media: [{type: mongoose.Schema.Types.ObjectId, ref: "Media"}],
   },
   {
     timestamps: true,
