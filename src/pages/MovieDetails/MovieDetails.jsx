@@ -19,9 +19,9 @@ class MovieDetails extends Component {
       <>
         <h1>Movie Deets</h1>
         <a href={`https://www.imdb.com/title/${this.state.searchResult.imdb_id}`}>View on IMDB</a>
-        <a href={`/movies/similar/${this.state.searchResult.id}`}>Find similar shows</a>
+        <a href={`/search/movies/similar/${this.state.searchResult.id}`}>Find similar shows</a>
         {this.state.searchResult.genres?.map(genre => 
-          <a href={`/movies/genre/${genre.id}`}>
+          <a href={`/search/movies/genre/${genre.id}`}>
             <p>{genre.name}</p>
           </a>
         )}

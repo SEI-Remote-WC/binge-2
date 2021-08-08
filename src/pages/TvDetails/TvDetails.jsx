@@ -17,9 +17,9 @@ class TvDetails extends Component {
     return (
       <>
         <h1>TV Deets</h1>
-        <a href={`/tvs/similar/${this.state.searchResult.id}`}>Find similar shows</a>
+        <a href={`/search/tvs/similar/${this.state.searchResult.id}`}>Find similar shows</a>
         {this.state.searchResult.genres?.map(genre => 
-          <a href={`/tvs/genre/${genre.id}`}>
+          <a href={`/search/tvs/genre/${genre.id}`}>
             <p>{genre.name}</p>
           </a>
         )}

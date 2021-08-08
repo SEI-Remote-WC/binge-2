@@ -12,7 +12,7 @@ const TvCard = ({ tv }) => {
       <p>{tv.overview}</p>
       <h4>Genres:</h4>
       {tv.genre_ids?.map(genre => 
-        <a href={`/tvs/genre/${genre}`}>
+        <a href={`/search/tvs/genre/${genre}`}>
           <p>{tvGenreLookup.identifyTvGenre(genre)}</p>
         </a>
       )}

@@ -8,19 +8,18 @@ class TvSearch extends Component {
     type: 'tv',
     searchResults: {},
     query: this.props.match.params.query,
-    id: this.props.match.params.id,
-    genre: this.props.match.params.genre
+    searchType: this.props.match.params.searchType
   }
 
   async componentDidMount() {
-    if (this.state.query) {
+    if (this.state.searchType === 'byName') {
       const searchResults = await mediaAPI.search(this.state.type, this.state.query)
       this.setState({searchResults})
-    } else if (this.state.id) {
-      const searchResults = await mediaAPI.searchSimilar(this.state.type, this.state.id)
+    } else if (this.state.searchType === 'similar') {
+      const searchResults = await mediaAPI.searchSimilar(this.state.type, this.state.query)
       this.setState({searchResults})
-    } else if (this.state.genre) {
-      const searchResults = await mediaAPI.searchGenre(this.state.type, this.state.genre)
+    } else if (this.state.searchType === 'genre') {
+      const searchResults = await mediaAPI.searchGenre(this.state.type, this.state.query)
       this.setState({searchResults})
     }
   }

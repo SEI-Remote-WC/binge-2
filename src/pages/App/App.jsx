@@ -56,142 +56,72 @@ class App extends Component {
   }
 
   render() {
-    const { user } = this.state
+    const { user, userProfile } = this.state
     return (
       <>
         <NavBar user={user} history={this.props.history} handleLogout={this.handleLogout} />
-        <Route
-          exact
-          path="/"
-          render={() => (
-            <main>
-              
-            </main>
+        <Route exact path="/" render={() => (
+            <main></main>
         )}/>
-        <Route
-          exact
-          path="/signup"
-          render={({ history }) => (
+        <Route exact path="/signup" render={({ history }) => (
             <Signup
               history={history}
               handleSignupOrLogin={this.handleSignupOrLogin}
             />
         )}/>
-        <Route
-          exact
-          path="/login"
-          render={({ history }) => (
+        <Route exact path="/login" render={({ history }) => (
             <Login
              history={history}
              handleSignupOrLogin={this.handleSignupOrLogin}
             />
         )}/>
-        <Route
-          exact
-          path="/users"
-          render={() =>
+        <Route exact path="/users" render={() =>
             user ? 
             <ProfileList 
               handleAddFriend={this.handleAddFriend}
               handleRemoveFriend={this.handleRemoveFriend}
-              userProfile={this.state.userProfile}
+              userProfile={userProfile}
             /> : <Redirect to="/login" />
         }/>
-        <Route exact path='/search/tv/:query' render={({location, match}) => 
+        <Route exact path='/search/tvs/:searchType/:query' render={({location, match}) => 
           authService.getUser() ?
             <TvSearch
               location={location}
               match={match}
-              userProfile={this.state.userProfile}
+              userProfile={userProfile}
               handleAddMedia={this.handleAddMedia}
               handleRemoveMedia={this.handleRemoveMedia}
-            />
-            :
-            <Redirect to='/login'/>
+            /> : <Redirect to='/login'/>
         }/>
-        <Route exact path='/search/movie/:query' render={({location, match}) => 
+        <Route exact path='/search/movies/:searchType/:query' render={({location, match}) => 
           authService.getUser() ?
             <MovieSearch
               location={location}
               match={match}
-              userProfile={this.state.userProfile}
+              userProfile={userProfile}
               handleAddMedia={this.handleAddMedia}
               handleRemoveMedia={this.handleRemoveMedia}
-            />
-            :
-            <Redirect to='/login'/>
+            /> : <Redirect to='/login'/>
         }/>
         <Route exact path='/movies/:id' render={({location, match}) => 
           authService.getUser() ?
             <MovieDetails 
               location={location}
               match={match}
-              userProfile={this.state.userProfile}
+              userProfile={userProfile}
               handleAddMedia={this.handleAddMedia}
               handleRemoveMedia={this.handleRemoveMedia}
-            />
-            :
-            <Redirect to='/login' />
+            /> : <Redirect to='/login' />
         }/>
         <Route exact path='/tvs/:id' render={({location, match}) => 
           authService.getUser() ?
             <TvDetails 
               location={location}
               match={match}
-              userProfile={this.state.userProfile}
+              userProfile={userProfile}
               handleAddMedia={this.handleAddMedia}
               handleRemoveMedia={this.handleRemoveMedia}
-            />
-            :
-            <Redirect to='/login' />
-        }/>
-        <Route exact path='/movies/similar/:id' render={({location, match}) => 
-          authService.getUser() ?
-            <MovieSearch
-              location={location}
-              match={match}
-              userProfile={this.state.userProfile}
-              handleAddMedia={this.handleAddMedia}
-              handleRemoveMedia={this.handleRemoveMedia}
-            />
-            :
-            <Redirect to='/login' />
-        }/>
-        <Route exact path='/tvs/similar/:id' render={({location, match}) => 
-          authService.getUser() ?
-            <TvSearch 
-              location={location}
-              match={match}
-              userProfile={this.state.userProfile}
-              handleAddMedia={this.handleAddMedia}
-              handleRemoveMedia={this.handleRemoveMedia}
-            />
-            :
-            <Redirect to='/login' />
-        }/>
-        <Route exact path='/movies/genre/:genre' render={({location, match}) => 
-          authService.getUser() ?
-            <MovieSearch
-              location={location}
-              match={match}
-              userProfile={this.state.userProfile}
-              handleAddMedia={this.handleAddMedia}
-              handleRemoveMedia={this.handleRemoveMedia}
-            />
-            :
-            <Redirect to='/login' />
-        }/>
-        <Route exact path='/tvs/genre/:genre' render={({location, match}) => 
-          authService.getUser() ?
-            <TvSearch
-              location={location}
-              match={match}
-              userProfile={this.state.userProfile}
-              handleAddMedia={this.handleAddMedia}
-              handleRemoveMedia={this.handleRemoveMedia}
-            />
-            :
-            <Redirect to='/login' />
+            /> : <Redirect to='/login' />
         }/>
       </>
     );
