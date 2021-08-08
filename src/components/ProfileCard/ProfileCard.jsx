@@ -1,9 +1,17 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const ProfileCard = ({ profile, user, userProfile, handleAddFriend, handleRemoveFriend }) => {
+const ProfileCard = ({ profile, userProfile, handleAddFriend, handleRemoveFriend }) => {
   return (
     <>
-      <h4>{profile.name}</h4>
+      <Link
+        to={{
+          pathname: '/profile',
+          state: {profile}
+        }} 
+      >
+        <h4>{profile.name}</h4>
+      </Link>
       { !(userProfile?._id === profile._id) && !(userProfile?.friends?.includes(profile._id)) &&
       <button onClick={() => handleAddFriend(profile._id)}>Befriend {profile.name}</button> 
       }

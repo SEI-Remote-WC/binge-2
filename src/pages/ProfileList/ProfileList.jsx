@@ -7,6 +7,23 @@ class ProfileList extends Component {
     profiles: [],
   }
 
+  handleRefreshProfiles = async () => {
+    const profiles = await getAllProfiles()
+    this.setState({ profiles })
+  }
+
+  handleAddFriend = async id => {
+    await this.props.handleAddFriend(id)
+    const profiles = await getAllProfiles()
+    this.setState({ profiles })
+  }
+
+  handleRemoveFriend = async id => {
+    await this.props.handleRemoveFriend(id)
+    const profiles = await getAllProfiles()
+    this.setState({ profiles })
+  }
+
   async componentDidMount() {
     const profiles = await getAllProfiles()
     this.setState({ profiles })
@@ -20,9 +37,11 @@ class ProfileList extends Component {
           <ProfileCard 
             key={profile._id}
             profile={profile}
-            handleAddFriend={this.props.handleAddFriend}
-            handleRemoveFriend={this.props.handleRemoveFriend}
+            handleAddFriend={this.handleAddFriend}
+            handleRemoveFriend={this.handleRemoveFriend}
             userProfile={this.props.userProfile}
+            location={this.props.location}
+            handleRefreshProfiles={this.handleRefreshProfiles}
           />
         ))}
       </>

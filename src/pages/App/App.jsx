@@ -11,6 +11,7 @@ import TvSearch from '../TvSearch/TvSearch'
 import MovieDetails from '../MovieDetails/MovieDetails'
 import TvDetails from '../TvDetails/TvDetails'
 import * as profileAPI from '../../services/profileService'
+import ProfileDetails from '../ProfileDetails/ProfileDetails'
 
 class App extends Component {
   state = {
@@ -37,12 +38,12 @@ class App extends Component {
 
   handleAddFriend = async friendId => {
     const updatedProfile = await profileAPI.friend(friendId)
-    this.setState({userProfile: updatedProfile})
+    this.setState({userProfile: updatedProfile}, ()=> this.props.history.push('/users'))
   }
 
   handleRemoveFriend = async friendId => {
     const updatedProfile = await profileAPI.unfriend(friendId)
-    this.setState({userProfile: updatedProfile})
+    this.setState({userProfile: updatedProfile}, ()=> this.props.history.push('/users'))
   }
 
   handleAddMedia = async media => {
@@ -61,62 +62,67 @@ class App extends Component {
       <>
         <NavBar user={user} history={this.props.history} handleLogout={this.handleLogout} />
         <Route exact path="/" render={() => (
-            <main></main>
+          <main></main>
         )}/>
         <Route exact path="/signup" render={({ history }) => (
-            <Signup
-              history={history}
-              handleSignupOrLogin={this.handleSignupOrLogin}
-            />
+          <Signup
+            history={history}
+            handleSignupOrLogin={this.handleSignupOrLogin}
+          />
         )}/>
         <Route exact path="/login" render={({ history }) => (
-            <Login
-             history={history}
-             handleSignupOrLogin={this.handleSignupOrLogin}
-            />
+          <Login
+            history={history}
+            handleSignupOrLogin={this.handleSignupOrLogin}
+          />
         )}/>
         <Route exact path="/users" render={() =>
-            user ? 
-            <ProfileList 
-              handleAddFriend={this.handleAddFriend}
-              handleRemoveFriend={this.handleRemoveFriend}
-              userProfile={userProfile}
-            /> : <Redirect to="/login" />
+          authService.getUser() ?
+          <ProfileList 
+            handleAddFriend={this.handleAddFriend}
+            handleRemoveFriend={this.handleRemoveFriend}
+            userProfile={userProfile}
+          /> : <Redirect to="/login" />
         }/>
-        <Route exact path='/search/tvs/:searchType/:query' render={({location, match}) => 
+        <Route exact path="/profile" render={({ location }) =>
+          authService.getUser() ?
+          <ProfileDetails 
+            handleAddFriend={this.handleAddFriend}
+            handleRemoveFriend={this.handleRemoveFriend}
+            userProfile={userProfile}
+            location={location}
+          /> : <Redirect to="/login" />
+        }/>
+        <Route exact path='/search/tvs/:searchType/:query' render={({ match }) => 
           authService.getUser() ?
             <TvSearch
-              location={location}
               match={match}
               userProfile={userProfile}
               handleAddMedia={this.handleAddMedia}
               handleRemoveMedia={this.handleRemoveMedia}
             /> : <Redirect to='/login'/>
         }/>
-        <Route exact path='/search/movies/:searchType/:query' render={({location, match}) => 
+        <Route exact path='/search/movies/:searchType/:query' render={({ match }) => 
           authService.getUser() ?
             <MovieSearch
-              location={location}
               match={match}
               userProfile={userProfile}
               handleAddMedia={this.handleAddMedia}
               handleRemoveMedia={this.handleRemoveMedia}
             /> : <Redirect to='/login'/>
         }/>
-        <Route exact path='/movies/:id' render={({location, match}) => 
+        <Route exact path='/movies/:id' render={({ match }) => 
           authService.getUser() ?
             <MovieDetails 
-              location={location}
               match={match}
               userProfile={userProfile}
               handleAddMedia={this.handleAddMedia}
               handleRemoveMedia={this.handleRemoveMedia}
             /> : <Redirect to='/login' />
         }/>
-        <Route exact path='/tvs/:id' render={({location, match}) => 
+        <Route exact path='/tvs/:id' render={({ match }) => 
           authService.getUser() ?
             <TvDetails 
-              location={location}
               match={match}
               userProfile={userProfile}
               handleAddMedia={this.handleAddMedia}
