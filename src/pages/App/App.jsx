@@ -36,14 +36,18 @@ class App extends Component {
     }
   }
 
-  handleAddFriend = async friendId => {
+  handleAddFriend = async (friendId, profile) => {
     const updatedProfile = await profileAPI.friend(friendId)
-    this.setState({userProfile: updatedProfile}, ()=> this.props.history.push('/users'))
+    this.setState({userProfile: updatedProfile},
+    ()=> this.props.history.push({
+      pathname: '/profile',
+      state: { profile }}))
   }
 
-  handleRemoveFriend = async friendId => {
+  handleRemoveFriend = async (friendId, profile) => {
     const updatedProfile = await profileAPI.unfriend(friendId)
-    this.setState({userProfile: updatedProfile}, ()=> this.props.history.push('/users'))
+    this.setState({userProfile: updatedProfile},
+      ()=> this.props.history.push('/users'))
   }
 
   handleAddMedia = async media => {
@@ -76,12 +80,14 @@ class App extends Component {
             handleSignupOrLogin={this.handleSignupOrLogin}
           />
         )}/>
-        <Route exact path="/users" render={() =>
+        <Route exact path="/users" render={({ location }) =>
           authService.getUser() ?
           <ProfileList 
             handleAddFriend={this.handleAddFriend}
             handleRemoveFriend={this.handleRemoveFriend}
             userProfile={userProfile}
+            // history={history}
+            location={location}
           /> : <Redirect to="/login" />
         }/>
         <Route exact path="/profile" render={({ location }) =>
@@ -91,6 +97,8 @@ class App extends Component {
             handleRemoveFriend={this.handleRemoveFriend}
             userProfile={userProfile}
             location={location}
+            // history={history}
+            userProfile={userProfile}
           /> : <Redirect to="/login" />
         }/>
         <Route exact path='/search/tvs/:searchType/:query' render={({ match }) => 

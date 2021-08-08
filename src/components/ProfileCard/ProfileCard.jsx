@@ -13,10 +13,10 @@ const ProfileCard = ({ profile, userProfile, handleAddFriend, handleRemoveFriend
         <h4>{profile.name}</h4>
       </Link>
       { !(userProfile?._id === profile._id) && !(userProfile?.friends?.includes(profile._id)) &&
-      <button onClick={() => handleAddFriend(profile._id)}>Befriend {profile.name}</button> 
+      <button onClick={() => handleAddFriend(profile._id, profile)}>Befriend {profile.name}</button> 
       }
       { !(userProfile?._id === profile._id) && (userProfile?.friends?.includes(profile._id)) &&
-      <button onClick={() => handleRemoveFriend(profile._id)}>Defriend {profile.name}</button> 
+      <button onClick={() => handleRemoveFriend(profile._id, profile)}>Defriend {profile.name}</button> 
       }     
     </>
   );
