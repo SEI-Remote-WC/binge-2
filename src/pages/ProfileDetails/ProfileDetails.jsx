@@ -18,6 +18,7 @@ const ProfileDetails = ({ location, userProfile, handleAddFriend, handleRemoveFr
     <h2>Friends</h2>
       {location.state.profile.friends.map(profile => 
         <Link
+          key={profile._id}
           to={{
             pathname: '/profile',
             state: {profile}

@@ -11,7 +11,7 @@ const MovieCard = ({ movie }) => {
       <p>{movie.overview}</p>
       <h4>Genres:</h4>
       {movie.genre_ids?.map((genre, idx) => 
-        <a href={`/search/movies/genre/${genre}`}>
+        <a key={idx} href={`/search/movies/genre/${genre}`}>
           <p key={idx}>{movieGenreLookup.identifyMovieGenre(genre)}</p>
         </a>
       )}

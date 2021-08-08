@@ -15,21 +15,13 @@ class ProfileList extends Component {
   handleAddFriend = async (id, profile) => {
     await this.props.handleAddFriend(id, profile)
     const profiles = await getAllProfiles()
-    this.setState({ profiles }, 
-    // ()=> this.props.history.push({
-    //   pathname: '/profile',
-    //   state: { profile }})
-    )
+    this.setState({ profiles })
   }
 
   handleRemoveFriend = async (id, profile) => {
     await this.props.handleRemoveFriend(id, profile)
     const profiles = await getAllProfiles()
-    this.setState({ profiles },
-    // ()=> this.props.history.push({
-    //   pathname: '/profile',
-    //   state: { profile }})
-    )
+    this.setState({ profiles })
   }
 
   async componentDidMount() {

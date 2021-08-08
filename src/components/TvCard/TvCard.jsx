@@ -11,9 +11,9 @@ const TvCard = ({ tv }) => {
       <p>{tv.id}</p>
       <p>{tv.overview}</p>
       <h4>Genres:</h4>
-      {tv.genre_ids?.map(genre => 
-        <a href={`/search/tvs/genre/${genre}`}>
-          <p>{tvGenreLookup.identifyTvGenre(genre)}</p>
+      {tv.genre_ids?.map((genre, idx) => 
+        <a key={genre} href={`/search/tvs/genre/${genre}`}>
+          <p key={idx}>{tvGenreLookup.identifyTvGenre(genre)}</p>
         </a>
       )}
     </>

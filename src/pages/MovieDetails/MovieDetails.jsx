@@ -10,7 +10,6 @@ class MovieDetails extends Component {
 
   async componentDidMount() {
     const searchResult = await mediaAPI.searchOne(this.state.type, this.state.id)
-    console.log(searchResult)
     this.setState({searchResult})
   }
 
@@ -21,7 +20,7 @@ class MovieDetails extends Component {
         <a href={`https://www.imdb.com/title/${this.state.searchResult.imdb_id}`}>View on IMDB</a>
         <a href={`/search/movies/similar/${this.state.searchResult.id}`}>Find similar shows</a>
         {this.state.searchResult.genres?.map(genre => 
-          <a href={`/search/movies/genre/${genre.id}`}>
+          <a key={genre.id} href={`/search/movies/genre/${genre.id}`}>
             <p>{genre.name}</p>
           </a>
         )}

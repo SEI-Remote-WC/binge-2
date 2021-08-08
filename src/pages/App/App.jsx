@@ -86,7 +86,6 @@ class App extends Component {
             handleAddFriend={this.handleAddFriend}
             handleRemoveFriend={this.handleRemoveFriend}
             userProfile={userProfile}
-            // history={history}
             location={location}
           /> : <Redirect to="/login" />
         }/>
@@ -97,7 +96,6 @@ class App extends Component {
             handleRemoveFriend={this.handleRemoveFriend}
             userProfile={userProfile}
             location={location}
-            // history={history}
             userProfile={userProfile}
           /> : <Redirect to="/login" />
         }/>

@@ -28,7 +28,7 @@ class MovieSearch extends Component {
       <>
         <h1>Movie Results</h1>
         {this.state.searchResults.results?.map((movie, idx) => 
-          <>
+          <div key={idx}>
             <MovieCard 
               key={movie.id}
               movie={movie}
@@ -41,7 +41,7 @@ class MovieSearch extends Component {
               media={movie}
               type="movie"
             />
-          </>
+          </div>
         )}
         
       </>  

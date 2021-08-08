@@ -29,9 +29,9 @@ class TvSearch extends Component {
       <>
         <h1>TV Results</h1>
         {this.state.searchResults.results?.map((tv, idx) => 
-          <>
+          <div key={idx}>
             <TvCard 
-              key={idx}
+              key={tv.id}
               tv={tv}
             />
             <MediaForm
@@ -42,7 +42,7 @@ class TvSearch extends Component {
               media={tv}
               type="tv"
             />
-        </>
+        </div>
         )}
       </>  
     );
