@@ -33,7 +33,7 @@ const ProfileDetails = ({ location, userProfile, handleAddFriend, handleRemoveFr
       )}
       <h2>Movies</h2>
       {movies.map(movie => 
-        <h3>{movie.title}</h3>
+        <h3 key={movie.id}>{movie.title}</h3>
       )}
     </>
   );

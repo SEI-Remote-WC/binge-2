@@ -12,6 +12,7 @@ import MovieDetails from '../MovieDetails/MovieDetails'
 import TvDetails from '../TvDetails/TvDetails'
 import * as profileAPI from '../../services/profileService'
 import ProfileDetails from '../ProfileDetails/ProfileDetails'
+import Landing from '../Landing/Landing'
 
 class App extends Component {
   state = {
@@ -66,7 +67,9 @@ class App extends Component {
       <>
         <NavBar user={user} history={this.props.history} handleLogout={this.handleLogout} />
         <Route exact path="/" render={() => (
-          <main></main>
+          <Landing
+            user={user}
+          />
         )}/>
         <Route exact path="/signup" render={({ history }) => (
           <Signup
@@ -96,7 +99,6 @@ class App extends Component {
             handleRemoveFriend={this.handleRemoveFriend}
             userProfile={userProfile}
             location={location}
-            userProfile={userProfile}
           /> : <Redirect to="/login" />
         }/>
         <Route exact path='/search/tvs/:searchType/:query' render={({ match }) => 

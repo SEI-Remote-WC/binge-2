@@ -7,7 +7,37 @@ export {
   friend,
   unfriend,
   addMedia,
-  removeMedia
+  removeMedia,
+  getRecent
+}
+
+function getRecent(req, res) {
+  Profile.find({})
+  .sort({createdAt: -1})
+  .limit(5)
+  .populate({
+    path: 'friends',
+    populate: {
+      path: 'media'
+    }
+  })
+  .populate('media')
+  .then(recentProfiles => {
+    Media.find({ type: 'tv' })
+    .sort({ _id: -1 })
+    .limit(5)
+    .populate('collected_by')
+    .then(recentTv => {
+      Media.find({ type: 'movie' })
+      .sort({ _id: -1 })
+      .limit(5)
+      .populate('collected_by')
+      .then(recentMovies => {
+        const recentActivity = {recentProfiles, recentTv, recentMovies}
+        res.json(recentActivity)
+      })
+    })
+  })
 }
 
 async function addMedia (req, res) {

@@ -62,3 +62,13 @@ export function removeMedia(media) {
     { mode: "cors" })
   .then((res) => res.json())
 }
+
+export function getRecent() {
+  return fetch(
+    `${BASE_URL}/getRecent`,
+    {
+      headers: { Authorization: "Bearer " + tokenService.getToken() }
+    },
+    { mode: "cors" })
+  .then((res) => res.json())
+}
