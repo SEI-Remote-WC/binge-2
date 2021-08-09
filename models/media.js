@@ -11,7 +11,8 @@ const mediaSchema = new mongoose.Schema({
   poster_path: String,
   release_date: Date,
   api_id: Number,
-  collected_by: [{type: mongoose.Schema.Types.ObjectId, ref: "Profile"}]
+  collected_by: [{type: mongoose.Schema.Types.ObjectId, ref: "Profile"}],
+  reviews: [{type: mongoose.Schema.Types.ObjectId, ref: "Review"}]
 }, {
   timestamps: true
 });
