@@ -26,7 +26,6 @@ class MediaForm extends Component {
   render() { 
     return (
       <>
-        <h2>Media Form</h2>
         { this.props.userProfile?.media.some(media => media.api_id === this.state.formData.api_id) &&
           <button onClick={this.handleSubmitRemove}>REMOVE</button>
         }

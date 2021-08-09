@@ -1,14 +1,11 @@
-
-NOT DONE
-- "Now Playing On"
-- Latest / Now Playing / Popular / Top Rated / Upcoming
-- Genre Lookup
-
 DONE
 - Video embedding
 - Get similar movies/shows
 - IMDB Links
+- Genre Lookup
 
 MAYBE?
+- "Now Playing On"
+- Latest / Now Playing / Popular / Top Rated / Upcoming
 - Pagination
 - belongs_to_collection & Collection details? (Stretch)

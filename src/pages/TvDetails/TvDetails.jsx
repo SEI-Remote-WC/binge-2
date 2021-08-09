@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import * as mediaAPI from '../../services/media-api'
+import ReviewForm from '../../components/ReviewForm/ReviewForm'
 
 class TvDetails extends Component {
   state = {
@@ -27,6 +28,7 @@ class TvDetails extends Component {
            <iframe key={idx} title={`search-video-${idx}`} src={`http://www.youtube.com/embed/${video.key}`}
            width="560" height="315" frameBorder="0"></iframe>  
         )}
+        <ReviewForm />
       </>
     );
   }
