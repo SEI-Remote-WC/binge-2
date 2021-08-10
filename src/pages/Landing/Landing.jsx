@@ -28,7 +28,7 @@ class Landing extends Component {
           <Link to={`/tvs/${tv.api_id}`}>
             <img src={"https://image.tmdb.org/t/p/w200/" + tv.poster_path} alt="poster" />
           </Link>
-            <h4 key={tv._id}>{tv.title}  added by {tv.collected_by[0].name} on {moment(tv.updatedAt).format('DD-MM-YYYY hh:mm A')}</h4>
+            <h4 key={tv._id}>{tv.title}  added by {tv.collected_by[0]?.name} on {moment(tv.updatedAt).format('DD-MM-YYYY hh:mm A')}</h4>
           
           </> 
         )}
@@ -38,7 +38,7 @@ class Landing extends Component {
           <Link to={`/movies/${movie.api_id}`}>
             <img src={"https://image.tmdb.org/t/p/w200/" + movie.poster_path} alt="poster" />
           </Link>
-            <h4 key={movie._id}>{movie.title} added by {movie.collected_by[0].name} on {moment(movie.updatedAt).format('DD-MM-YYYY hh:mm A')}</h4>
+            <h4 key={movie._id}>{movie.title} added by {movie.collected_by[0]?.name} on {moment(movie.updatedAt).format('DD-MM-YYYY hh:mm A')}</h4>
           </>
         )}
       </>

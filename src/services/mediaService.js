@@ -1,7 +1,8 @@
 import * as tokenService from './tokenService';
+const BASE_URL = '/api/media/'
 
 export function search(type, query) {
-  return fetch(`/api/media/search/${type}/${query}`, {
+  return fetch(`${BASE_URL}search/${type}/${query}`, {
     headers: {
       'Authorization': `Bearer ${tokenService.getToken()}`
     },
@@ -10,7 +11,7 @@ export function search(type, query) {
 }
 
 export function searchOne(type, id) {
-  return fetch(`/api/media/searchOne/${type}/${id}`, {
+  return fetch(`${BASE_URL}searchOne/${type}/${id}`, {
     headers: {
       'Authorization': `Bearer ${tokenService.getToken()}`
     },
@@ -19,7 +20,7 @@ export function searchOne(type, id) {
 }
 
 export function searchSimilar(type, id) {
-  return fetch(`/api/media/searchSimilar/${type}/${id}`, {
+  return fetch(`${BASE_URL}searchSimilar/${type}/${id}`, {
     headers: {
       'Authorization': `Bearer ${tokenService.getToken()}`
     },
@@ -29,7 +30,7 @@ export function searchSimilar(type, id) {
 
 
 export function searchGenre(type, id) {
-  return fetch(`/api/media/searchGenre/${type}/${id}`, {
+  return fetch(`${BASE_URL}searchGenre/${type}/${id}`, {
     headers: {
       'Authorization': `Bearer ${tokenService.getToken()}`
     },
@@ -37,6 +38,29 @@ export function searchGenre(type, id) {
   .then(res => res.json())
 }
 
+export function addMedia(media) {
+  return fetch(
+    `${BASE_URL}/addMedia`,
+    {
+      method: 'POST',
+      headers: {'content-type': 'application/json', 'Authorization': 'Bearer ' + tokenService.getToken()},
+      body: JSON.stringify(media)
+    },
+    { mode: "cors" })
+  .then((res) => res.json())
+}
+
+export function removeMedia(media) {
+  return fetch(
+    `${BASE_URL}/removeMedia`,
+    {
+      method: 'DELETE',
+      headers: {'content-type': 'application/json', 'Authorization': 'Bearer ' + tokenService.getToken()},
+      body: JSON.stringify(media)
+    },
+    { mode: "cors" })
+  .then((res) => res.json())
+}
 
 
 

@@ -18,8 +18,6 @@ router.get("/userProfile", checkAuth, profilesCtrl.userProfile)
 router.get('/getRecent', checkAuth, profilesCtrl.getRecent)
 router.patch("/friend/:id", checkAuth, profilesCtrl.friend)
 router.patch("/unfriend/:id", checkAuth, profilesCtrl.unfriend)
-router.patch('/addMedia', checkAuth, profilesCtrl.addMedia)
-router.patch('/removeMedia', checkAuth, profilesCtrl.removeMedia)
 
 
 

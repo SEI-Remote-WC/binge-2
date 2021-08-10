@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import * as mediaAPI from '../../services/media-api'
+import * as mediaAPI from '../../services/mediaService'
 import ReviewForm from '../../components/ReviewForm/ReviewForm'
 
 class MovieDetails extends Component {

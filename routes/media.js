@@ -17,4 +17,6 @@ router.get('/search/:type/:query', checkAuth, mediaCtrl.search)
 router.get('/searchOne/:type/:id', checkAuth, mediaCtrl.searchOne)
 router.get('/searchSimilar/:type/:id', checkAuth, mediaCtrl.searchSimilar)
 router.get('/searchGenre/:type/:id', checkAuth, mediaCtrl.searchGenre)
+router.post('/addMedia', checkAuth, mediaCtrl.addMedia)
+router.delete('/removeMedia', checkAuth, mediaCtrl.removeMedia)
 

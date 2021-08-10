@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import * as mediaAPI from '../../services/media-api'
+import * as mediaAPI from '../../services/mediaService'
 import TvCard from '../../components/TvCard/TvCard'
 import MediaForm from '../../components/MediaForm/MediaForm'
 

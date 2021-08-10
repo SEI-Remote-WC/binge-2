@@ -13,6 +13,7 @@ import TvDetails from '../TvDetails/TvDetails'
 import * as profileAPI from '../../services/profileService'
 import ProfileDetails from '../ProfileDetails/ProfileDetails'
 import Landing from '../Landing/Landing'
+import * as mediaAPI from '../../services/mediaService'
 
 class App extends Component {
   state = {
@@ -52,12 +53,12 @@ class App extends Component {
   }
 
   handleAddMedia = async media => {
-    const updatedProfile = await profileAPI.addMedia(media)
+    const updatedProfile = await mediaAPI.addMedia(media)
     this.setState({userProfile: updatedProfile})
   }
 
   handleRemoveMedia = async media => {
-    const updatedProfile = await profileAPI.removeMedia(media)
+    const updatedProfile = await mediaAPI.removeMedia(media)
     this.setState({userProfile: updatedProfile})
   }
 
